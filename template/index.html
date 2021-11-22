@@ -417,49 +417,24 @@
                 <div class="right">
                     <div class="content">
                         <h4>Help us get to know you.</h4>
-                        <form action="">
-                            <div class="one_by_two"><input type="email" placeholder="Work Email" /></div>
-                            <div class="one_by_two"><input type="text" placeholder="First Name" /></div>
-                            <div class="one_by_two"><input type="text" placeholder="Last Name" /></div>
-                            <div class="one_by_two"><input type="text" placeholder="Company" /></div>
-                            <div class="one_by_two">
-                                <select>
-                                    <option value="">Company Size</option>
-                                    <option value="1-10">1-10</option>
-                                    <option value="11-50">11-50</option>
-                                    <option value="51-200">51-200</option>
-                                    <option value="201-500">201-500</option>
-                                </select>
-                            </div>
-                            <div class="one_by_two">
-                                <select>
-                                    <option value="">Industry</option>
-                                    <option value="Agriculture">Agriculture</option>
-                                    <option value="Banking &amp; Finance">Banking &amp; Finance</option>
-                                    <option value="Business Services &amp; Software">Business Services &amp; Software</option>
-                                </select>
-                            </div>
-                            <div class="one_by_two">
-                                <select>
-                                    <option value="">Job Role</option>
-                                    <option value="C-Suite">C-Suite</option>
-                                    <option value="VP">VP</option>
-                                </select>
-                            </div>
-                            <div class="one_by_two">
-                                <select><option value="">Country</option><option value="United States">United States</option>
-                                    <option value="Afghanistan">Afghanistan</option>
-                                <option value="Albania">Albania</option>
-                                <option value="Algeria">Algeria</option>
-                                <option value="American Samoa">American Samoa</option>
-                            </select>
-                            </div>
+                        <form action="{% url 'web:contact' %}" method="post" class="ajax">
+                            {% csrf_token %} 
+
+                            <div class="one_by_two">{{form.email}}</div>
+                            <div class="one_by_two">{{form.first_name}}</div>
+                            <div class="one_by_two"> {{form.last_name}}</div>
+                            <div class="one_by_two">{{form.company}}</div>
+                            <div class="one_by_two">{{form.company_size}}</div>
+                            <div class="one_by_two">{{form.industry}}</div>
+                            <div class="one_by_two">{{form.job_role}}</div>
+                            <div class="one_by_two">{{form.country}}</div>
+
                             <div class="full checkbox">
-                                <input id="id_checkbox" type="checkbox" value="Get a Demo" />
-                                <label for="id_checkbox">Yes, I'd like to receive occasional marketing emails from Wibbitz. I have the right to opt out at any time. <a href="#">View privacy policy.</a></label>
+                               {{form.user_agreement}}
+                                <label for="{{form.user_agreement.id_for_label}}" value="True">Yes, I'd like to receive occasional marketing emails from Wibbitz. I have the right to opt out at any time. <a href="#">View privacy policy.</a></label>
                             </div>
                             <div class="full">
-                                <input class="submit" type="submit" value="Get a Demo" />
+                                <input id="submit" class="submit" type="submit" value="Get a Demo" />
                             </div>
                         </form>
                     </div>

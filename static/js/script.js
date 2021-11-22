@@ -37,3 +37,6 @@ $(document).on("submit", "form.ajax", function (e){
         },
     });
 });
+$("#submit").click((e)=>{
+    console.log("user_agreement", $("#id_user_agreement").val())
+})

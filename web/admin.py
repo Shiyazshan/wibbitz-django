@@ -1,5 +1,5 @@
 from django.contrib import admin
-from web.models import Subscribe,Promoter,Feature,VideoBlog,Testimonial,MarketingFeature,Product,Blog
+from web.models import Subscribe,Promoter,Feature,VideoBlog,Testimonial,MarketingFeature,Product,Blog,Contact
 
 
 admin.site.register(Subscribe)
@@ -38,3 +38,5 @@ class BlogAdmin(admin.ModelAdmin):
     list_display =["id","image","title","content_type"]
 
 admin.site.register(Blog,BlogAdmin)
+
+admin.site.register(Contact)
