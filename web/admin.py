@@ -5,7 +5,7 @@ from web.models import Subscribe,Promoter,Feature,VideoBlog,Testimonial,Marketin
 admin.site.register(Subscribe)
 
 class PromoterAdmin(admin.ModelAdmin):
-    list_display = ["id", "image"]
+    list_display = ["id", "image" , "white_logo"]
 
 admin.site.register(Promoter,PromoterAdmin) 
 

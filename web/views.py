@@ -9,6 +9,7 @@ from web.forms import ContactForm
 
 def index(request):
     promoters = Promoter.objects.all()
+    latest_promoters = Promoter.objects.all()[:4]
     features = Feature.objects.all() 
     videoblogs = VideoBlog.objects.all()
     testimonials = Testimonial.objects.all()
@@ -26,7 +27,8 @@ def index(request):
         "marketingfeatures" : marketingfeatures,
         "products" : products,
         "blogs" : blogs,
-        "form" : form
+        "form" : form,
+        "latest_promoters" : latest_promoters
        
     }
     return render(request, "index.html",context = context)
@@ -55,33 +57,9 @@ def subscribe(request):
 
 
 def contact(request):
-    email = request.POST.get("email")
-    first_name = request.POST.get("first_name")
-    last_name = request.POST.get("last_name")
-    company = request.POST.get("company")
-    company_size = request.POST.get("company_size")
-    industry = request.POST.get("industry")
-    job_role = request.POST.get("job_role")
-    country = request.POST.get("country")
-    user_agreement = request.POST.get("user_agreement")
-    if not user_agreement:
-        user_agreement = False
-    elif user_agreement == "on":
-        user_agreement = True
-
-    if not Contact.objects.filter(email=email).exists():
-        Contact.objects.create(
-            email = email,
-            first_name = first_name,
-            last_name = last_name,
-            company = company,
-            company_size = company_size,
-            industry = industry,
-            job_role = job_role,
-            country = country,
-            user_agreement = user_agreement
-
-        )
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        form.save()
 
         response_data = {
             "status" :"success",

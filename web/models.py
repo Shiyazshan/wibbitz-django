@@ -43,7 +43,7 @@ class Subscribe(models.Model):
 
 class Promoter(models.Model): 
     image = models.FileField(upload_to="promoters/")
-
+    white_logo = models.FileField(upload_to="promoters/",blank=True,null=True)
 
 class Feature(models.Model):
     image = models.ImageField(upload_to="features/")
